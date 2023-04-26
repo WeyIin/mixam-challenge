@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Contact Us</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+		integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link th:href="@{/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 mt-3">
+				<h1 class="formTitle">We are here to help, simply get in touch.</h1>
+				<p>We'll happily answer any questions you may have. Please call, email or even write. Or use the contact
+					form below.</p>
+
+				<div class="pb-4">
+					<i class="fa-solid fa-phone"></i>
+						888-510-1456 <br>
+						+1-888-510-1456 (from outside US)
+				</div>
+				
+				<div class="pb-4">
+					<i class="fa-solid fa-envelope"></i>
+					<span>team@mixam.com</span>
+				</div>
+				
+				<div class="pb-4">
+					<i class="fa-solid fa-location-dot"></i>
+					Corporate Office (Appt. Only): Mixam Inc.<br>
+					1515 East Woodfield Road,<br>
+					Suite 342,<br>
+					Schaumburg, Illinois, 60173
+				</div>
+				
+				<div class="btn btn-common bnt-block bg-light rounded p-2 border">
+					<img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Google_Maps_icon_%282020%29.svg" width="12" />
+					<a class="text-decoration-none text-dark" href="https://goo.gl/maps/J4EW5idZbTDQWrEj9">Google Map</a>
+				</div>
+			</div>
+
+			<div class="col-md-6 mt-3 pb-3 rounded bg-white">
+				<div class="formDisplay" th:unless="${success}">
+					<form method="post" th:action="@{/contact}" th:object="${form}" class="pt-3">
+						<div>
+							<label for="name" class="pb-1">Your Name</label>
+							<input class="form-control mb-3" id="name" type="text" name="name" required
+								data-error="Please enter your name" th:field="*{name}" placeholder="Marco Polo" 
+								th:classappend="${#fields.hasErrors('name')} ? 'border border-danger' : ''">
+							<p class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+						</div>
+	
+						<div>
+							<label for="email" class="pb-1">Email</label>
+							<input class="form-control mb-3" id="email" type="email" name="email" required
+								data-error="Please enter your Email" th:field="*{email}" placeholder="marcopolo@gmail.com"
+								th:classappend="${#fields.hasErrors('email')} ? 'border border-danger' : ''">
+							<p class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+						</div>
+	
+						<div>
+							<label for="phoneNumber" class="pb-1">Phone Number</label>
+							<input class="form-control mb-3" id="phoneNumber" type="text" name="phoneNumber" required
+								data-error="Please enter your phone number" th:field="*{phoneNumber}"
+								placeholder="888-781-5189"
+								th:classappend="${#fields.hasErrors('phoneNumber')} ? 'border border-danger' : ''">
+							<p class="error" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>
+						</div>
+	
+						<div>
+							<label for="companyName" class="pb-1">Company Name</label>
+							<input class="form-control mb-3" id="companyName" type="text" name="companyName"
+								th:field="*{companyName}" placeholder="Company name">
+							<p class="error" th:if="${#fields.hasErrors('companyName')}" th:errors="*{phoneNumber}"></p>
+						</div>
+	
+						<div>
+							<label for="orderNumber" class="pb-1">Order Number</label>
+							<input class="form-control mb-3" id="orderNumber" type="number" name="orderNumber"
+								th:field="*{orderNumber}" placeholder="Order Number">
+							<p class="error" th:if="${#fields.hasErrors('orderNumber')}" th:errors="*{orderNumber}"></p>
+						</div>
+	
+						<div>
+							<label for="message" class="pb-1">Message</label>
+							<textarea class="form-control" id="message" type="text" name="message" required
+								data-error="Please enter a message" th:field="*{message}" placeholder="I am interested...."
+								th:classappend="${#fields.hasErrors('message')} ? 'border border-danger' : ''"></textarea>
+							<p class="error" th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></p>
+						</div>
+	
+						<div>
+							<span>By submitting this form, you agree to our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></span>
+						</div>
+	
+						<div class="form-submit mt-2">
+							<button class="btn btn-common btn-lg btn-block text-light w-100 submitBtn" type="submit">Submit</button>
+						</div>
+					</form>
+				</div>
+				
+				<div class="success" th:if="${success != null || success == true}">
+					<div class="text-center pt-3 pb-3">
+						<h3>Thank You!</h3>
+					</div>
+					
+					<p>
+						We have received your message, our team will get in touch with you shortly.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

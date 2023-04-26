@@ -1,0 +1,15 @@
+body {
+	background-color: rgb(242,238,242);
+}
+
+.submitBtn {
+	background-color: rgb(63,165,161);
+}
+
+.submitBtn:hover {
+	background-color: rgb(70, 185, 181)
+}
+
+p.error {
+	color: #dc3545;
+}
